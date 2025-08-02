@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admit Card - Math & Science Olympiad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .admit-card {
+            width: 800px;
+            height: 600px;
+            background: white;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            border: 3px solid #8b5cf6;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Background logo */
+        .admit-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.15;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+
+        /* Header section */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c8f7a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .organization {
+            font-size: 14px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* Top section with three columns */
+        .top-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* Authority box (left) */
+        .authority-section {
+            flex: 0 0 280px;
+        }
+
+        .authority-box {
+            border: 2px solid #ef0707;
+            padding: 18px;
+            height: 210px; /* Changed from 210px */
+        }
+
+        .authority-header {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .authority-row {
+            display: flex;
+            margin-bottom: 14px;
+            align-items: center;
+        }
+
+        .authority-label {
+            font-size: 16px;
+            font-weight: bold;
+            width: 85px;
+            flex-shrink: 0;
+        }
+
+        .authority-colon {
+            margin: 0 8px;
+            flex-shrink: 0;
+        }
+
+        .authority-value {
+            flex: 1;
+            height: 24px;
+            border: 1px solid #333;
+            font-family: 'Times New Roman', serif;
+            font-size: 14px;
+            padding: 2px 4px;
+            display: flex;
+            align-items: center;
+            background: white;
+        }
+
+        /* Middle section (class, subject, room) */
+        .middle-section {
+            flex: 1;
+            padding-left: 10px;
+            padding-top: 30px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .info-label {
+            font-size: 16px;    
+            font-weight: bold;
+            width: 80px;        
+            flex-shrink: 0;
+        }
+        .info-colon {
+            margin: 0 8px;
+            flex-shrink: 0;
+        }
+        .info-value {
+            width: 200px;       
+            height: 34px;       
+            border: 1px solid #333;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            padding: 2px 4px;
+            display: flex;
+            align-items: center;
+        }
+        /* Photo section (right) */
+        .photo-section {
+            flex: 0 0 140px;
+        }
+
+        .photo-box {
+            width: 150px;
+            height: 160px;
+            border: 2px solid #333;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-label {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .photo-size {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Personal information section */
+        .personal-section {
+            margin-bottom: 20px;
+        }
+
+        .personal-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .personal-label {
+            font-size: 16px;
+            font-weight: bold;
+            width: 160px;
+            flex-shrink: 0;
+        }
+
+        .personal-colon {
+            margin: 0 8px;
+            flex-shrink: 0;
+        }
+
+        .personal-value {
+            flex: 1;
+            height: 30px;
+            /* Changed from 24px */
+            border: 1px solid #000000;
+            font-family: 'Times New Roman', serif;
+            font-size: 18px;
+            padding: 2px 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Exam details section */
+        .exam-details {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .exam-date {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .date-label {
+            color: #1360cd;
+            font-weight: bold;
+        }
+
+        .date-value {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .location-label {
+            color: #1360cd;
+            font-weight: bold;
+        }
+
+        .location-value {
+            color: #2c8f7a;
+            font-weight: bold;
+        }
+
+        .venue-label {
+            color: #1360cd;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .venue-name {
+            color: #047341;
+            font-weight: bold;
+        }
+
+
+        /* Bottom section */
+        .bottom-section {
+            position: absolute;
+            bottom: 10px;
+            left: 30px;
+            right: 5px;
+        }
+
+        /* Signature area */
+        .signature-area {
+            position: absolute;
+            bottom: -10px;
+            right: 0px;
+            text-align: left;
+        }
+
+        .signature-line {
+            width: 120px;
+            height: 1px;
+            background: #333;
+            margin-bottom: 10px;
+        }
+
+        .signature-label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Signature image */
+        .signature-img {
+            width: 120px;
+            height: 40px;
+            background-image: url('sign.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-bottom: 10px;
+        }
+
+        /* Dashed border line */
+        .dashed-line {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: repeating-linear-gradient(to right,
+                    #999 0,
+                    #999 6px,
+                    transparent 6px,
+                    transparent 12px);
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .admit-card {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admit-card">
+        <div class="content">
+            <!-- Header -->
+            <div class="header">
+                <div class="title">Admit Card</div>
+                <div class="subtitle">MATH & SCIENCE OLYMPIAD BY</div>
+                <div class="organization">SAVAR SCIENCE SOCIETY</div>
+            </div>
+
+            <!-- Top section with three columns -->
+            <div class="top-section">
+                <!-- Authority box (left) -->
+                <div class="authority-section">
+                    <div class="authority-box">
+                        <div class="authority-header">Authority</div>
+                        <div class="authority-content">
+
+                            <div class="authority-row">
+                                <span class="authority-label">Roll</span>
+                                <span class="authority-colon">:</span>
+                                <div class="authority-value"></div>
+                            </div>
+
+                            <div class="authority-row">
+                                <span class="authority-label">Registration</span>
+                                <span class="authority-colon">:</span>
+                                <div class="authority-value"></div>
+                            </div>
+
+                            <div class="authority-row">
+                                <span class="authority-label">Shift</span>
+                                <span class="authority-colon">:</span>
+                                <div class="authority-value"></div>
+                            </div>
+
+                            <div class="authority-row">
+                                <span class="authority-label">Time</span>
+                                <span class="authority-colon">:</span>
+                                <div class="authority-value"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle section (class, subject, room) -->
+                <div class="middle-section">
+                    <div class="info-row">
+                        <span class="info-label">Class</span>
+                        <span class="info-colon">:</span>
+                        <div class="info-value"></div>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Subject</span>
+                        <span class="info-colon">:</span>
+                        <div class="info-value"></div>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-label">Room No</span>
+                        <span class="info-colon">:</span>
+                        <div class="info-value"></div>
+                    </div>
+                </div>
+
+                <!-- Photo section (right) -->
+                <div class="photo-section">
+                    <div class="photo-box">
+                        <div class="photo-label">Photo</div>
+                        <div class="photo-size">(Passport Size)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal information section -->
+            <div class="personal-section">
+                <div class="personal-row">
+                    <span class="personal-label">Full Name</span>
+                    <span class="personal-colon">:</span>
+                    <div class="personal-value"></div>
+                </div>
+
+                <div class="personal-row">
+                    <span class="personal-label">Father's Name</span>
+                    <span class="personal-colon">:</span>
+                    <div class="personal-value"></div>
+                </div>
+
+                <div class="personal-row">
+                    <span class="personal-label">Educational Institute</span>
+                    <span class="personal-colon">:</span>
+                    <div class="personal-value"></div>
+                </div>
+            </div>
+
+            <!-- Exam details -->
+            <div class="exam-details">
+                <div class="exam-date">
+                    <span class="date-label">EXAM DATE:</span>
+                    <span class="date-value">27 SEPTEMBER 2025</span>
+                </div>
+                <div class="exam-date">
+                    <span class="location-label">LOCATION ON MAPS:</span>
+                    <span class="location-value">23.850189,90.264326</span>
+                </div>
+                <div class="exam-date">
+                    <span class="venue-label">Venue:</span>
+                    <span class="venue-name">Savar Model College</span>
+                </div>
+            </div>
+
+            <!-- Signature area -->
+            <div class="signature-area">
+                <div class="signature-line"></div>
+                <div class="signature-label">Register Signature</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
